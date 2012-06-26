@@ -61,3 +61,6 @@ Represents a V8 (JavaScript) value. This can be a scalar type like number or Str
 * **appshell_extensions.cpp**: the handler for native JavaScript functions.
 * **appshell_extensions_mac.mm/appshell_extensions_win.cpp**: platform-specific code for V8 extensions
 
+## V8 Extensions
+
+See the [Writing V8 Extensions] (https://github.com/adobe/brackets-shell/wiki/Writing-V8-Extensions) document for more details on the V8 extension architecture.
