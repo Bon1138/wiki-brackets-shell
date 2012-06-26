@@ -2,6 +2,8 @@
 
 All of the JavaScript functions in the <code>brackets.fs</code> and <code>brackets.app</code> objects are backed by native code in the application shell. This document describes how it all works.
 
+You should read the [Architecture Overview] (https://github.com/adobe/brackets-shell/wiki/Architectural-Overview) document before reading this document.
+
 ## V8 Extensions
 
 The native code is hooked up to JavaScript through a V8 Extension. General information on V8 Extensions (along with other ways to integrate with JavaScript in CEF) can be found on the CEF wiki:
