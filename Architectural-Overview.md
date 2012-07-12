@@ -61,6 +61,51 @@ Represents a V8 (JavaScript) value. This can be a scalar type like number or Str
 * **appshell_extensions.cpp**: the handler for native JavaScript functions.
 * **appshell_extensions_mac.mm/appshell_extensions_win.cpp**: platform-specific code for V8 extensions
 
+## Dealing With Asynchronicity
+
+The biggest changes between the CEF1 and CEF3 shells have to do with asynchronous code. All of the JavaScript APIs in the `brackets.fs` and `brackets.app` objects had asynchronous signatures (they use a callback function instead of return values), but in the old CEF1 shell, they all ran synchronously.
+
+With the CEF3 shell, JavaScript runs in the render process and V8 extensions that need to access the UI or the file system run in the browser process. This makes everything asynchronous for realz. 
+
+What does this mean? Well, if you have JavaScript code that has a callback function, **don't** expect that callback function to be invoked before the rest of the outer function is run. Here is an example:
+
+```js
+function doSomething() {
+    // Declare a variable, but don't initialize it
+    var someVar;
+
+    // Call an asynchronous function and pass a callback
+    asyncFunction(function (result) {
+        someVar = result;
+    });
+
+    // You may think you can use someVar here, but DON'T!
+    // There is no guarantee that the callback function has been
+    // called yet, so someVar could still be uninitialized.
+    if (someVar === 42) {
+        // ...
+    } 
+}
+``` 
+
+### Closing a Window
+
+The best example showing the complexities of asynchronicity are in the window closing code. When the user clicks the close box on the window, we need to call into JavaScript to see if there are any unsaved changes before closing the window. Here are the steps that happen:
+
+1. The native close message is sent to the window (`windowShouldClose` on the mac, `WM_CLOSE` on windows)
+2. The native code sends a `FILE_CLOSE_WINDOW` command to JavaScript (asynchronously, of course!) and returns NO (telling the OS that the window should not be closed).
+3. In JavaScript, if there are any unsaved changes, the user is prompted to save the changes, cancel, or continue without saving.
+4. If the user selects "Cancel", no other processing is done, and the window remains open.
+5. If the user selects "Save", all files are saved (asynchronously, of course!). 
+6. The JavaScript code eventually calls window.close() after all files have been saved.
+7. In the native code, window.close() ends up calling `windowShouldClose`/`WM_CLOSE` a second time. The native code sends **another** `FILE_CLOSE_WINDOW` command to JavaScript.
+8. The `FILE_CLOSE_WINDOW` handler detects that we are already in the process of closing the window and returns without handling the command.
+9. The native code sees that the JavaScript code did not handle the command, so it tries to close the window directly. Before this is done we set a flag on the window to note that it is being closed for real this time.
+10. A **third** `windowShouldClose`/`WM_CLOSE` message is sent. This time the native code looks at the flag set in step 9 and returns YES (telling the OS that the window should be closed). 
+11. Finally, after all of that, the window is actually closed!
+
+In summary, when closing a window, the JavaScript code could have the `FILE_CLOSE_WINDOW` command invoked twice, and the native code could have the `shouldCloseWindow`/`WM_CLOSE` message sent **three** times. All of this to deal with asynchronous code...
+
 ## V8 Extensions
 
 See the [Writing V8 Extensions] (https://github.com/adobe/brackets-shell/wiki/Writing-V8-Extensions) document for more details on the V8 extension architecture.
