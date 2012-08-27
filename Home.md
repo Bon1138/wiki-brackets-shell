@@ -1,9 +1,14 @@
-brackets-shell is the beginnings of a new CEF3-based application shell for Brackets. It is **not** ready for use yet, so please continue to use the existing [brackets-app](https://github.com/adobe/brackets-app) shell until further notice.
+Welcome to the brackets-shell wiki!
+
+If you're looking for general information about Brackets, you should check out the [Brackets Wiki](https://github.com/adobe/brackets/wiki). This page has information about hacking on the Brackets native app shell.
+
+Before you get started, you should read [How to Hack on Brackets] (https://github.com/adobe/brackets/wiki/How-to-Hack-on-Brackets). 
 
 If you are interested in contributing to this shell, let us know on the [brackets-dev Google Group](http://groups.google.com/group/brackets-dev), or on the [#brackets channel on freenode](http://webchat.freenode.net/?channels=brackets).
 
 ### Technical info
 
+* [[Building brackets-shell]]
 * [[Architectural Overview]]
 * [[Writing V8 Extensions]]
 
