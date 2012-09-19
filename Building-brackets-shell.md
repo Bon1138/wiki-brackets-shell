@@ -30,6 +30,11 @@ brackets-shell
 Open a terminal window on the `brackets-shell` directory and run `scripts/make_symlinks.sh`. This will create symbolic links to several folders in the `deps/cef` directory.
 Open appshell.pbxproj in XCode. NOTE: If you are using XCode 4.4, you will get a couple warnings. These are harmless, and will be fixed soon.
 
+####Running
+When you launch Brackets, you will be prompted to select an `index.html` file. Navigate to your local copy of the brackets repo and select `src/index.html`. You will be prompted to select the `index.html` file every time you launch. 
+
+You can also run the `tools/setup_for_hacking` script in the brackets repo to create a symlink in your Brackets.app. Pass the full path to the app you are building. Debug builds are in the `xcodebuild/Debug` directory, and Release builds are in the `xcodebuild/Release` directory.
+
 ####Generating Projects
 This is only required if you are changing the project files. **NOTE:** Don't change the xcode project files directly. Any changes should be done to the .gyp files, and new xcode projects should be generated.
 
@@ -66,6 +71,11 @@ brackets-shell
 Open a command prompt on the `brackets-shell` directory and run `scripts\\make_symlinks.bat`. This will create symbolic links to several folders in the `deps/cef` directory.
 
 Open appshell.sln in Visual Studio. NOTE: If you are using Visual Studio Express, you may get warnings that say some of the projects couldn't be loaded. These can be ignored.
+
+####Running
+When you launch Brackets, you will be prompted to select an `index.html` file. Navigate to your local copy of the brackets repo and select `src\index.html`. You will be prompted to select the `index.html` file every time you launch. 
+
+You can also run the `tools\setup_for_hacking` script in the brackets repo to create a symlink build directory. Pass the full path to the directory of the app you are building. Debug builds are in the `Debug` directory, and Release builds are in the `Release` directory.
 
 ####Generating Projects
 This is only required if you are changing the project files. **NOTE:** Don't change the Visual Studio project files directly. Any changes should be done to the .gyp files, and new Visual Studio projects should be generated.
