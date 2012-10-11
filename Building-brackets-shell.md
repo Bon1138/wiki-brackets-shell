@@ -5,7 +5,7 @@ This project requires a [CEF3 binary distribution](http://code.google.com/p/chro
 
 * Xcode 4 required to build the project
   * In newer versions of Xcode, you might also need to install the "Command Line Tools" in Xcode from Preferences > Downloads.
-* [CEF3 binary distribution](http://code.google.com/p/chromiumembedded/downloads/detail?name=cef_binary_3.1180.719_macosx.zip&can=2&q=)  version 3.1180.719 or newer
+* [CEF3 binary distribution](http://code.google.com/p/chromiumembedded/downloads/detail?name=cef_binary_3.1180.823_macosx.zip&can=2&q=)  version 3.1180.823 
 * To modify the project files, you will also need:
   * python
   * chromium source code (at least the src/build and src/tools directories). Hopefully this is a short-term requirement.
@@ -46,7 +46,7 @@ This is only required if you are changing the project files. **NOTE:** Don't cha
 ####Prerequisites
 
 * Visual Studio 2010 or later required to build the project. The free Visual Studio Express works fine.
-* [CEF3 binary distribution](http://code.google.com/p/chromiumembedded/downloads/detail?name=cef_binary_3.1180.719_windows.zip&can=2&q=) version 3.1180.719 or newer
+* [CEF3 binary distribution](http://code.google.com/p/chromiumembedded/downloads/detail?name=cef_binary_3.1180.823_windows.zip&can=2&q=) version 3.1180.823
 * To modify the project files, you will also need:
   * python
   * chromium source code (at least the src/build and src/tools directories). Hopefully this is a short-term requirement.
