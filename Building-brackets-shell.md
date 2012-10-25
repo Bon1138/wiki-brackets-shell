@@ -68,7 +68,7 @@ brackets-shell
    ...
 ```
 
-Open a command prompt on the `brackets-shell` directory and run `scripts\\make_symlinks.bat`. This will create symbolic links to several folders in the `deps/cef` directory.
+Open a command prompt on the `brackets-shell` directory and run `scripts\make_symlinks.bat`. This will create symbolic links to several folders in the `deps/cef` directory.
 
 Open appshell.sln in Visual Studio. NOTE: If you are using Visual Studio Express, you may get warnings that say some of the projects couldn't be loaded. These can be ignored.
 
