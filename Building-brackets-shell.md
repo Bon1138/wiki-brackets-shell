@@ -1,6 +1,6 @@
 This project requires a [CEF3 binary distribution](http://code.google.com/p/chromiumembedded/downloads/list) in order to build.
 
-### Mac
+## Mac
 ####Prerequisites
 
 * Xcode 4 required to build the project
@@ -41,7 +41,7 @@ This is only required if you are changing the project files (project settings, _
 * Add a <code>CHROMIUM\_SRC\_PATH</code> environment variable that points to your chromium 'src' folder (without a final '/').
 * Open a terminal window on this directory and run <code>scripts/make\_appshell\_project.sh</code> (Note: while not required, it is a good idea to delete the old appshell.xcodeproj before generating a new one.)
 
-### Windows
+## Windows
 
 ####Prerequisites
 
