@@ -8,7 +8,7 @@ If you are interested in contributing to this shell, let us know on the [bracket
 
 ### Technical info
 
-* [[Building brackets-shell]]
+* [[Building Brackets-Shell]]
 * [[Architectural Overview]]
 * [[Writing V8 Extensions]]
 
