@@ -56,6 +56,6 @@ When you launch Brackets, you will be prompted to select an `index.html` file. N
 
 You can also run the `tools\setup_for_hacking` script in the brackets repo to create a symlink build directory. Pass the full path to the directory of the app you are building. Debug builds are in the `Debug` directory, and Release builds are in the `Release` directory.
 
-### Linux
+## Linux
 
 Not available yet. Please let us know if you'd like to help with the Linux version.
