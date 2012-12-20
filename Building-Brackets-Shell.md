@@ -1,4 +1,3 @@
-This project requires a [CEF3 binary distribution](http://code.google.com/p/chromiumembedded/downloads/list) in order to build.
 
 ## Mac
 ####Prerequisites
