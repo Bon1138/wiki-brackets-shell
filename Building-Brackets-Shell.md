@@ -27,7 +27,7 @@ You can also run the `tools/setup_for_hacking` script in the brackets repo to cr
 ####Prerequisites
 
 * Visual Studio 2010 or later required to build the project. The free Visual Studio Express works fine.
-* Windows Vista or later (although brackets-shell _runs_ on Windows XP, you cannot _build_ it on XP -- at least not without doing some of the build setup by hand)
+* Windows Vista or later (although brackets-shell _runs_ on Windows XP, you cannot _build_ it on XP)
 * [GitBash](http://code.google.com/p/msysgit/downloads/list) (I used Git-1.8.0-preview20121022.exe)
 * [Python 2.7](http://www.python.org/getit/releases/2.7.3/) (Use the Windows X86 MSI or Windows X86-64 MSI)
 
