@@ -48,7 +48,7 @@ Build the "Brackets" target.
 ####Building from the command line
 Open a GitBash window at the `brackets-shell` directory.
 Set the `BRACKETS_SRC` environment variable to point to the location of the brackets repo
-(e.g. `export BRACKETS_SRC=/Users/[username]/dev/brackets`).
+(e.g. `export BRACKETS_SRC=/C/Users/[username]/dev/brackets`).
 Run `scripts/build.sh`. This will make a release build of Brackets at `Release/Brackets.exe`.
 
 ####Running
