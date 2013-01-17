@@ -9,6 +9,8 @@
 ####Setup
 Open a Terminal window at the `brackets-shell` directory and run `scripts/setup.sh`. This will download the CEF binary (if needed), create symlinks for the CEF directories, and create the XCode project.
 
+You will need to _re-run setup.sh_ later if new source files are added or if brackets-shell updates to a newer CEF build.
+
 ####Building in XCode
 Open appshell.xcodeproj in XCode and build the "Brackets" target.
 
@@ -40,6 +42,8 @@ Add Python to your path. The default python 2.7 install directory is `C:\Python2
 
 ####Setup
 Open a GitBash shell and navigate to the `brackets-shell` directory. Run `scripts/setup.sh`. This will download the CEF binary (if needed), create symlinks for the CEF directories, and create the Visual Studio solution file.
+
+You will need to _re-run setup.sh_ later if new source files are added or if brackets-shell updates to a newer CEF build.
 
 ####Building in Visual Studio.
 Open appshell.sln in Visual Studio. NOTE: If you are using Visual Studio Express, you may get warnings that say some of the projects couldn't be loaded. These can be ignored.
