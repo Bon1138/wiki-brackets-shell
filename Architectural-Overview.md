@@ -1,6 +1,6 @@
 ## Background
 
-The Brackets application shell is built using the [Chromium Embedded Framework (CEF)] (http://http://code.google.com/p/chromiumembedded/). CEF is an open source web browser control based on Google Chromium. 
+The Brackets application shell is built using the [Chromium Embedded Framework (CEF)] (http://code.google.com/p/chromiumembedded/). CEF is an open source web browser control based on Google Chromium. 
 
 The Brackets app is based on the cefclient sample application provided by CEF. The app itself is really quite simple -- it hosts the CEF control to display the HTML/CSS/JavaScript for Brackets, and provides some extensions required for Brackets to work. These extensions include filesystem access, file dialogs, and code for launching and connecting to the Live Development browser.
 
