@@ -15,14 +15,14 @@ You will need to _re-run setup.sh_ later if new source files are added or if bra
 Open appshell.xcodeproj in XCode and build the "Brackets" target.
 
 ####Building from the command line
-Open a Terminal window at the `brackets-shell` directory.
-Set the `BRACKETS_SRC` environment variable to point to the location of the brackets repo.
-Run `scripts/build.sh`. If you don't have DropDMG installed you will get an error when trying to build the installer. This is okay. You can still run the build at `xcodebuild/Release/Brackets.app`.
+Open a Terminal window at the `brackets-shell` directory and run `scripts/build.sh`.
 
 ####Running
-When you launch Brackets, you will be prompted to select an `index.html` file. Navigate to your local copy of the brackets repo and select `src/index.html`. You will be prompted to select the `index.html` file every time you launch. 
+The build output is located at `xcodebuild/Release/Brackets.app`.
 
-You can also run the `tools/setup_for_hacking` script in the brackets repo to create a symlink in your Brackets.app. Pass the full path to the app you are building. Debug builds are in the `xcodebuild/Debug` directory, and Release builds are in the `xcodebuild/Release` directory.
+When you launch this app, you will be prompted to select an `index.html` file. Navigate to your local copy of the brackets repo and select `src/index.html`. You will be prompted to select the `index.html` file every time you launch. 
+
+You can also run the `tools/setup_for_hacking` script in the brackets repo to create a symlink in your compiled Brackets.app. Pass the full path to the app you are building. Debug builds are in the `xcodebuild/Debug` directory, and Release builds are in the `xcodebuild/Release` directory.
 
 ## Windows
 
@@ -50,15 +50,14 @@ Open appshell.sln in Visual Studio. NOTE: If you are using Visual Studio Express
 Build the "Brackets" target.
 
 ####Building from the command line
-Open a GitBash window at the `brackets-shell` directory.
-Set the `BRACKETS_SRC` environment variable to point to the location of the brackets repo
-(e.g. `export BRACKETS_SRC=/C/Users/[username]/dev/brackets`).
-Run `scripts/build.sh`. This will make a release build of Brackets at `Release/Brackets.exe`.
+Open a GitBash window at the `brackets-shell` directory and run `scripts/build.sh`.
 
 ####Running
-When you launch Brackets, you will be prompted to select an `index.html` file. Navigate to your local copy of the brackets repo and select `src\index.html`. You will be prompted to select the `index.html` file every time you launch. 
+The build output is located at `Release\Brackets.exe`.
 
-You can also run the `tools\setup_for_hacking` script in the brackets repo to create a symlink build directory. Pass the full path to the directory of the app you are building. Debug builds are in the `Debug` directory, and Release builds are in the `Release` directory.
+When you launch this executable, you will be prompted to select an `index.html` file. Navigate to your local copy of the brackets repo and select `src\index.html`. You will be prompted to select the `index.html` file every time you launch. 
+
+You can also run the `tools\setup_for_hacking` script in the brackets repo to create a symlink in the build directory. Pass the full path to the directory containing the exe you are building. Debug builds are in the `Debug` directory, and Release builds are in the `Release` directory.
 
 ## Linux
 
