@@ -61,4 +61,4 @@ You can also run the `tools\setup_for_hacking` script in the brackets repo to cr
 
 ## Linux
 
-Not available yet. Please let us know if you'd like to help with the Linux version. -- You may want to take a look at https://groups.google.com/forum/?fromgroups=#!topic/brackets-dev/29vOJ6tvl8A%5B101-125-false%5D to get started.
+Not available yet. Please let us know if you'd like to help with the Linux version. -- You may want to take a look at https://github.com/adobe/brackets/wiki/Linux-Version to get started.
