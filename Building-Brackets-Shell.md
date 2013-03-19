@@ -3,7 +3,7 @@
 ### Prerequisites
 
 * [Node.js](http://nodejs.org/download/)
-* Additional prerequisites are listed below for [Mac](#Mac) and [Windows](#Windows)
+* Additional prerequisites are listed below for [Mac](#mac) and [Windows](#windows)
 
 #### Install Dependencies
 
