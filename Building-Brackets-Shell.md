@@ -70,7 +70,7 @@ Running ``grunt --help`` lists all the available tasks. Those tasks are listed b
   * In newer versions of Xcode, you might also need to install the "Command Line Tools" in Xcode from Preferences > Downloads.
 
 ####Setup
-Open a Terminal window at the `brackets-shell` directory and run `scripts/setup.sh`. This will download the CEF binary (if needed), create symlinks for the CEF directories, and create the XCode project.
+Open a Terminal window at the `brackets-shell` directory and run `grunt`. This will download the CEF and Node.js binaries (if needed), create symlinks for the CEF and Node.js directories, create the XCode project, then run a command line build.
 
 You will need to _re-run_ ``grunt setup`` later if new source files are added or if brackets-shell updates to a newer CEF build.
 
