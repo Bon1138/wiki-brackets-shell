@@ -3,7 +3,7 @@
 ### Prerequisites
 
 * [Node.js](http://nodejs.org/download/)
-* Additional prerequisites are listed below for [Mac](#mac) and [Windows](#windows)
+* Additional prerequisites are listed below for [Mac](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#mac) and [Windows](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#windows)
 
 #### Install Dependencies
 
