@@ -1,3 +1,66 @@
+## All Platforms
+
+### Prerequisites
+
+* [Node.js](http://nodejs.org/download/)
+* Additional prerequisites are listed below for [Mac](#Mac) and [Windows](#Windows)
+
+#### Install Dependencies
+
+Run the following set of commands to install package dependencies and [Grunt](http://gruntjs.com)
+
+```
+npm install
+npm install -g grunt-cli
+```
+
+Running ``grunt --help`` lists all the available tasks. Those tasks are listed below:
+
+```
+          full-build  Alias for "git", "create-project", "build",              
+                      "build-branch", "build-num", "build-sha", "stage",       
+                      "package" tasks.                                         
+           installer  Alias for "full-build", "build-installer" tasks.         
+               build  Build shell executable. Run 'grunt full-build' to update 
+                      repositories, build the shell and package www files.     
+           build-mac  Build mac shell                                          
+           build-win  Build windows shell                                      
+                 git  Pull specified repo branch from origin *                 
+        build-branch  Write www repo branch to config property                 
+                      build.build-branch                                       
+           build-num  Compute www repo build number and set config property    
+                      build.build-number                                       
+           build-sha  Write www repo SHA to config property build.build-sha    
+               stage  Stage release files                                      
+           stage-mac  Stage mac executable files                               
+           stage-win  Stage win executable files                               
+             package  Package www files                                        
+        write-config  Update version data in www config.json payload           
+     build-installer  Build installer                                          
+ build-installer-mac  Build mac installer                                      
+ build-installer-win  Build windows installer                                  
+          set-sprint  Update occurrences of sprint number for all native       
+                      installers and binaries                                  
+                 cef  Download and setup CEF                                   
+           cef-clean  Removes CEF binaries and linked folders                  
+        cef-download  Download CEF, see curl-dir config in Gruntfile.js        
+         cef-extract  Extract CEF zip                                          
+        cef-symlinks  Create symlinks for CEF                                  
+                node  Download Node.js binaries and setup dependencies         
+            node-win  Setup Node.js for Windows                                
+            node-mac  Setup Node.js for Mac OSX and extract                    
+          node-clean  Removes Node.js binaries                                 
+      create-project  Create Xcode/VisualStudio project                        
+               setup  Alias for "cef", "node", "create-project" tasks.         
+              jshint  Validate files with JSHint. *                            
+                copy  Copy files. *                                            
+               clean  Clean files and folders. *                               
+                curl  Download files from the internet via grunt. *            
+            curl-dir  Download collections of files from the internet via      
+                      grunt. *                                                 
+             default  Alias for "setup", "build" tasks.
+```
+
 ## Mac
 ####Prerequisites
 
@@ -9,13 +72,13 @@
 ####Setup
 Open a Terminal window at the `brackets-shell` directory and run `scripts/setup.sh`. This will download the CEF binary (if needed), create symlinks for the CEF directories, and create the XCode project.
 
-You will need to _re-run setup.sh_ later if new source files are added or if brackets-shell updates to a newer CEF build.
+You will need to _re-run_ ``grunt setup`` later if new source files are added or if brackets-shell updates to a newer CEF build.
 
 ####Building in XCode
 Open appshell.xcodeproj in XCode and build the "Brackets" target.
 
 ####Building from the command line
-Open a Terminal window at the `brackets-shell` directory and run `scripts/build.sh`.
+Open a Terminal window at the `brackets-shell` directory and run `grunt build`.
 
 ####Running
 The build output is located at `xcodebuild/Release/Brackets.app`.
@@ -41,16 +104,16 @@ Add Python to your path. The default python 2.7 install directory is `C:\Python2
 * Enter `echo $VS100COMNTOOLS`. You should see something like ""C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\Tools\"
 
 ####Setup
-Open a GitBash shell and navigate to the `brackets-shell` directory. Run `scripts/setup.sh`. This will download the CEF binary (if needed), create symlinks for the CEF directories, and create the Visual Studio solution file.
+Open a GitBash shell and navigate to the `brackets-shell` directory. Run `grunt`. This will download the CEF binary (if needed), create symlinks for the CEF directories, create the Visual Studio solution file, then run a command line build.
 
-You will need to _re-run setup.sh_ later if new source files are added or if brackets-shell updates to a newer CEF build.
+You will need to _re-run_ ``grunt setup`` later if new source files are added or if brackets-shell updates to a newer CEF build.
 
 ####Building in Visual Studio.
 Open appshell.sln in Visual Studio. NOTE: If you are using Visual Studio Express, you may get warnings that say some of the projects couldn't be loaded. These can be ignored.
 Build the "Brackets" target.
 
 ####Building from the command line
-Open a GitBash window at the `brackets-shell` directory and run `scripts/build.sh`.
+Open a GitBash window at the `brackets-shell` directory and run `grunt build`.
 
 ####Running
 The build output is located at `Release\Brackets.exe`.
