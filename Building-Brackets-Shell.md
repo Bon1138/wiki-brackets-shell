@@ -4,6 +4,7 @@
 
 * [Node.js](http://nodejs.org/download/)
 * Additional prerequisites are listed below for [Mac](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#mac) and [Windows](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#windows)
+* Clone both [brackets-shell](https://github.com/adobe/brackets-shell) and [brackets](https://github.com/adobe/brackets-shell) repositories as siblings in the same directory. By default, Gruntfiles in both projects make this assumption.
 
 #### Install Dependencies
 
