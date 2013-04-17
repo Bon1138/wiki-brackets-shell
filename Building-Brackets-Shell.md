@@ -84,9 +84,7 @@ Open a Terminal window at the `brackets-shell` directory and run `grunt build`.
 ####Running
 The build output is located at `xcodebuild/Release/Brackets.app`.
 
-When you launch this app, you will be prompted to select an `index.html` file. Navigate to your local copy of the brackets repo and select `src/index.html`. You will be prompted to select the `index.html` file every time you launch. 
-
-You can also run the `tools/setup_for_hacking` script in the brackets repo to create a symlink in your compiled Brackets.app. Pass the full path to the app you are building. Debug builds are in the `xcodebuild/Debug` directory, and Release builds are in the `xcodebuild/Release` directory.
+When you launch this app, you will be prompted to select `index.html` (the main file for the Brackets HTML/JS/CSS source code). Navigate to your local copy of the brackets repo and select `src/index.html`. To avoid having to do this every time you launch, go to the brackets repo and run the `tools/setup_for_hacking` script. This will add a symlink to the main file into your compiled Brackets.app. The parameter to setup_for_hacking is the full path to Brackets.app. Debug builds are in the `xcodebuild/Debug` directory, and Release builds are in the `xcodebuild/Release` directory.
 
 ## Windows
 
