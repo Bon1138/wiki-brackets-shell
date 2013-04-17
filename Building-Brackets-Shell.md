@@ -8,7 +8,7 @@
 
 #### Install Dependencies
 
-Run the following set of commands to install package dependencies and [Grunt](http://gruntjs.com)
+From the `brackets-shell` directory, run the following set of commands to install package dependencies and [Grunt](http://gruntjs.com)
 
 ```
 npm install
@@ -73,7 +73,7 @@ Running ``grunt --help`` lists all the available tasks. Those tasks are listed b
 ####Setup
 Open a Terminal window at the `brackets-shell` directory and run `grunt`. This will download the CEF and Node.js binaries (if needed), create symlinks for the CEF and Node.js directories, create the XCode project, then run a command line build.
 
-You will need to _re-run_ ``grunt setup`` later if new source files are added or if brackets-shell updates to a newer CEF build.
+You will need to run ``grunt setup`` later if new source files are added or if brackets-shell updates to a newer CEF build.
 
 ####Building in XCode
 Open appshell.xcodeproj in XCode and build the "Brackets" target.
