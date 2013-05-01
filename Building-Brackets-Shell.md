@@ -120,6 +120,14 @@ When you launch this executable, you will be prompted to select an `index.html` 
 
 You can also run the `tools\setup_for_hacking` script in the brackets repo to create a symlink in the build directory. Pass the full path to the directory containing the exe you are building. Debug builds are in the `Debug` directory, and Release builds are in the `Release` directory.
 
+####Troubleshooting
+If grunt fails you may need to reset  
+
+> git reset #HEAD  
+> git checkout .
+
+Make sure to run gitbash as administrator
+
 ## Linux
 
 Not available yet. Please let us know if you'd like to help with the Linux version. -- You may want to take a look at https://github.com/adobe/brackets/wiki/Linux-Version to get started.
