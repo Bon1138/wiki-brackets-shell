@@ -2,7 +2,7 @@
 
 The first part of the process is to move everything to windowing objects (objectifying the windowing code).  This is basically adding C++ wrappers (analogous to the MFC construct: CWnd) around all HWND objects.
 
-The primary reason for this is that a lot of data needs to be held on to like Fonts, Brushes and Pens for drawing and other state information. It's far more efficient to create these once and reuse them as needed or reference the data as class members.  Additionally, wrapping the window objects with C++ classes also aids in sub-classing child windows which we'll need to do for menus (see below).  It also improves the code's readability and makes debugging a little easier.
+The primary reason for this is that a lot of data needs to be held on to like Fonts, Brushes and Pens as well as state data used for drawing. It's far more efficient to create the GDI objects once and use them as needed rather than creating them on demand.  Additionally, wrapping the window objects with C++ classes aids in sub-classing child windows which we'll need to do for menus (see below) and it improves the code's readability.  It also makes debugging a little easier.
 
 Here is the base wrapper class for all windows that are created:
 
@@ -53,16 +53,20 @@ Here is the base wrapper class for all windows that are created:
 	    virtual void PostNonClientDestory();
     };
 
-The wrapper is fairly similar to the MFC CWnd implementation. However, there is no message map and only the functions which we use have been implemented not the entire Windows API.  
+The wrapper is fairly similar to the MFC CWnd implementation. However, there is no message map and only the functions which we need have been implemented -- not the entire Windows API.  
 
-NOTE: The create function takes a cef_menu* as an argument.  While we don't use this it's just a noop at this time.  The cef_menu class, however, will be created for menu specialization (see below).
+NOTE: The create function takes a cef_menu* as an argument.  While we don't use this parameter it's just a noop for now.  The cef_menu class, however, will be created for menu specialization (see below).
 
 # Message Handling
-Message handling is complex and the way MFC implements message maps is fairly convoluted and tricky so the simple approach is to just have message handlers implemented in the spec classes and handle base class overloading as needed.  So far there hasn't been any need for this.  The other thing that isn't implemented in my lightweight implementation is specialization of parameters and results for message handlers. 
+Message handling is complex and the way MFC implements message maps is fairly convoluted and tricky so the simple approach is to just have message handlers implemented in the spec classes and handle base class overloading as needed.  So far there hasn't been any need for this.  The other thing that isn't implemented in my lightweight implementation is typing of parameters and results to and from message handlers. 
 
-MFC implements "default" handlers for many window messages that are basically used to templatize the window message's protocol.  These message routing architecture casts WPARAM, LPARAM and LRESULT to and from Windows, Native and MFC types.  This is nice but somewhat difficult and expensive to implement.  To keep it simple and lightweight, there is no message map, no complex message routing architecture and no casting of parameters or results.  
+MFC implements "default" handlers for many window messages. This is basically done to templatize the window message protocol and make it easier to inherit and specialize behavior.  Part of the process that MFC undergoes to route window messages casts WPARAM, LPARAM and LRESULT to and from Windows, Native and MFC types.  This is nice but somewhat difficult and expensive to implement.  To keep it simple and lightweight, there is no message map, no complex message routing architecture and no casting of parameters or results. This means that a more brute-force method of message dispatching must be implemented. 
 
-All messages are handled in the window object's WindowProc method and the specialization will then call class handlers. Parameter and result casting is done when the message is handled before the call to the method to ease readability but actual implement is done in another method.  Fairly similar to what the shell does now except there is too much code inside the switch statement.
+All messages are handled in the window object's WindowProc method and each specialization class will call on class handlers. Unhandled messages are handled by the parent class' implementation by way of calling the base class' WindowProc after all message cracking is done.  If the base cef_window class implementation doesn't handle the message the message is passed to the subclassed window's window proc.
+
+Parameter and result casting can done when the message is handled in the WindowProc method before calling the message handler for readability and ease of use.  
+
+This is all fairly similar to what the shell does now except there is too much code inside the switch statement.
 
 Here is the WindowProc code for the main window:
 
@@ -118,12 +122,13 @@ Here is the WindowProc code for the main window:
 This is just a simple switch as we did in the old days of Windows C++ programming before there was MFC.
 
 *[Glenn] We should try to keep the general structure of the code in cefclient_win.cpp and client_handler_win.cpp in order to make future cefclient updates as smooth as possible. I'm definitely in favor of cleaning up the code (yes, that switch statement is way too long!), but we shouldn't stray too far from the original structure.*
+**_glenn, that's a good note.  I'll try to make that happen but it may be a merge of everything into one file at the end _**
   
 # Subclassing 
 
-MFC Maintains a single message pump for each thread that dispatches messages to the appropriate window through a CWndToObjMap which cannot be shared across threads.  Not that we need to but this has always been a source of consternation since you cannot re-wrap an CWnd object in another thread because it already has an AfxWndProc. 
+MFC Maintains a single message pump for each thread that dispatches messages to the appropriate window through a CWndToObjMap.   
 
-Windows implements a window property getter and setter how we'll dereference Window Object pointers:
+We need a similar way to map a window object to an HWND.  To do this we will use a window property. Windows implements a window property getter and setter how we'll dereference Window Object pointers:
 
      HANDLE GetProp (HWND, WCHAR*); 
      BOOL SetProp (HWND, WCHAR*, HANDLE);
@@ -159,7 +164,7 @@ This is much like AfxWindowProc except it doesn't look up the CWnd object from a
         ::_UnHookWindowCreate();
      }
 
-The `HookWindowCreate()` call just sets up a CBTHOOK and waits for a CREATEWND message then subclasses the window if the cef_window pointer matches the create params.  Almost exactly what MFC does but I added a few extras like making sure that the cef_window matches the create params.  This shouldn't be a big deal but just a little extra safety check:
+The `HookWindowCreate()` call just sets up a CBTHOOK and waits for a `HCBT_CREATEWND` message then subclasses the window.  This is almost exactly what MFC does but I added a few extras like making sure that the cef_window pointer matches the user data parameter that was passed to `CreateWindow`.  This extra safety check isn't really necessary but should give us some peace of mind:
 
     static LRESULT CALLBACK _HookProc(int code, WPARAM wParam, LPARAM lParam)
     {
@@ -188,15 +193,11 @@ The `HookWindowCreate()` call just sets up a CBTHOOK and waits for a CREATEWND m
     }
 
 # Titlebars, System Icons and Stuff
-This is pretty simple to do.  I implemented this in Dreamweaver CS5 for MDI document windows. Because we didn't implement OWL documents and wanted that "Gray" OWL look, custom drawing code was implemented to make the document frames "Gray" and customize the system buttons (Min/Max/Close).  
+This is pretty simple to do.  I implemented this in Dreamweaver CS5 for MDI document windows. Dreamweaver didn't use OWL documents and I wanted that "Gray" OWL look on document windows so I implemented custom drawing code to make the document frames "Gray" and customize the system buttons (Min/Max/Close).  
 
-The main thing that needs to be handled is that you need to implement a mouse down handler to know you're on a button and draw the button pressed, then draw it depressed on mouse up and don't let the default window proc handle the non-client mouse messages when you get these messages in the HitTest parameter of a mouse message:
+We need to handle all of the NC mouse messages so we know when the user is interacting with a button. This means drawing the buttons in their various states and overriding the default Windows implementation.
 
-    HTCLOSE
-    HTMAXBUTTON
-    HTMINBUTTON
-
-The other thing you need to do is when you get a mouse down message in the non-client area, you need to register the window for mouse leave events:
+We'll need to setup the window to receive a `WM_NCMOUSELEAVE` message from the on WM_NCMOUSEDOWN` handler when we get a hit test on one of the system buttons.  
 
     void cef_main_window::TrackMouseEvents(bool track/*=true*/) 
     {
@@ -272,7 +273,7 @@ And add some tracking data to the window object that needs it:
     };
 
 # Menus
-Menus are new because I haven't done much with them yet.  I started experimenting with this in my Reflow Innovation project and got some results but not as dramatic as what was laid out in the XD spec.  After Peter Flynn's comment about needing a minimum size, I'm not so certain that putting the menus in the title bar is the best idea.  
+Menus are new because I haven't done much with them yet.  I started experimenting with this in my Reflow Innovation project and got some results but not as dramatic as what was laid out in the XD spec.  After reading Peter Flynn's comment about needing a minimum, I'm a little concerned about putting the menus in the title bar.  
 
 *[Glenn] We need to figure out if menus will work in the title bar. Let's have that discussion soon.*
 
@@ -330,13 +331,20 @@ Then each menu item of each menu is made owner drawn:
 
 After that then you just need to handle the WM_MEASUREITEM and WM_DRAWITEM messages.
 
-This is as far as I got with my prototype. It worked but didn't get us what the XD spec calls for but it's a start.  The only thing that wasn't done was to get a black background for menus. I did a lot of experimentation and did quite a bit of research.  I have used an MFC based application theming library in the past (http://www.codejock.com/products/toolkitpro/) and, before that, implemented cool menu code from Paul DiLascia http://www.microsoft.com/msj/0198/coolmenu.aspx in a project.  
+This is as far as I got with my prototype. 
 
-Cool menu won't help us here because it is basically just drawing stuff on the existing background.  Toolkit pro, however, (Xtreme Toolkit when I used it) gave us window theming that made our app look like Microsoft Office which includes menus.  I also consulted another source and it means we need to hook the menu during create. 
+It worked but it doesn't put the menus in the title bar like Photoshop and other CS OWL based apps which is what Larz's spec calls for. If we wanted to keep the menus where they are then this will work fairly well but It'll need to be tested on different platforms and different drawing modes..  
 
-Popup Menus are just another window object (oddly though, they don't show up in SPY++) and can be hooked to do custom drawing like we do for any other winodw.  To hook a popup menu, you need to basically hook the window create process for all windows being created on the current thread and check for the special menu window class name ("#32768").  Dialogs, BTW, have class "#32770".  These probably represent system atoms but that's another talk. Hooking all window create messages for the current process means that we can theme the system menu and system context menus.  Brackets (and Edge Code) doesn't use system context menus but  Reflow does. So this is something that the unified
+The only thing that wasn't done was to get a black background for menus. I did a lot of experimentation and did quite a bit of research.  I have used an MFC based application theming library in the past (http://www.codejock.com/products/toolkitpro/) and, before that, implemented cool menu code from Paul DiLascia http://www.microsoft.com/msj/0198/coolmenu.aspx in various projects.  I looked at these to see how they solved some problems to glean an idea on how to solve some of the menuing issues for Brackets but cannot use the code as-is since they both depend on MFC.  I also looked at MenuXP from codeproject (http://www.codeproject.com/Articles/1809/CMenuXP-The-Office-XP-Style-Menu) -- Code Project Open License (http://www.codeproject.com/info/cpol10.aspx).  This cannot be used as a library drop-in either since it depends on MFC. 
+
+A lot can be learned from the 3 to help solve some of the drawing issues and accessibility issues.
+
+Popup Menus are just another window object (oddly though, they don't show up in SPY++) and can be hooked to do custom drawing like we do for any other window.  
+
+To hook a popup menu, you need to basically hook the window create process for all windows being created on the current thread and check for the special menu window class name ("#32768").  Dialogs, BTW, have class "#32770".  These probably represent system atoms but that's another talk. Hooking all window create messages for the current process means that we can theme the system menu and system context menus.  Brackets (and Edge Code) doesn't use system context menus but  Reflow does. So this is something that the unified
 
 *[Glenn] Native pop-up menus are in the backlog, so that is definitely something we'll need to address.*
+**_I was planning to add a test menu to make sure it works in Brackets then it's just a matter of creating a popup context menu_**
 
 So we basically re-use the window hook that we implemented for cef_window above and add another qualifier to check for menus:
 
@@ -349,13 +357,10 @@ So we basically re-use the window hook that we implemented for cef_window above 
             ... subclass the menu
         }
 
-Then the window object implementation needs to handle the drawing code for the menu (which is quite extensive).   This is a sample of *some* of what needs to be implemented.  Adobe also has a license for Xtreme toolkit so we can *steal* parts of that code more freely.  
-
-http://read.pudn.com/downloads73/sourcecode/windows/11923/Tools/MenuXP.cpp__.htm
-
+Then the window object implementation needs to handle the drawing code for the menu (which is quite extensive).   
 
 # Testing, 1-2-3
-The good news is that I've done most of the work in various forms and in different parts of the universe so this is just bringing them all together.  This started as an innovation project for Reflow.  Since I've done this many times I thought it would be easy (and it was) so the challenge was to make the menus work.  I think after the research I've done that I can move forward pretty quickly but Chris Bank tried to demo my build for the Reflow innovation day for me, since I was out on sabbatical, and wasn't able to get it to work on Windows Vista.  This is a risk. It was originally developed on XP so every version (and new version) of Windows needs to be tested.  The acceptance criteria doesn't call for owner drawn dialog boxes.  There aren't any except the File Dialogs (which is another story) so this should be a fairly quick inspection on all platforms.  It's just a matter of having access to VMWare and testing on every platform.
+The good news is that I've done most of the work in various forms and in different parts of the universe so this is just bringing them all together.  This started as an innovation project for Reflow.  Since I've done this many times I thought it would be easy (and it was) so the challenge was to make the menus work.  I think after the research I've done that I can move forward pretty quickly but Chris Bank tried to demo my build for the Reflow innovation day for me, since I was out on sabbatical, and wasn't able to get it to work on Windows Vista.  This is a risk. It was originally developed on XP so every version (and new version) of Windows needs to be tested.  The acceptance criteria doesn't call for owner drawn dialog boxes.  There aren't any except the File Dialogs (which is another story) so this should be a fairly quick inspection on all platforms.  It's just a matter of having access to VMWare and testing on every incarnation of windows with various accessibility settings, themes and changing various window customization settings.
 
 *[Glenn] Dialog boxes are out of scope. If XP support requires a bunch of additional work, we should consider dropping it. This is ultimately a PM decision, but engineering effort may influence it.*
 
