@@ -173,7 +173,7 @@ The `HookWindowCreate()` call just sets up a CBTHOOK and waits for a `HCBT_CREAT
     
         LPCREATESTRUCT lpcs = ((LPCBT_CREATEWND)lParam)->lpcs;
 
-        if (lpcs->lpCreateParams === (LPVOID)_HookData.m_window) 
+        if (lpcs->lpCreateParams == (LPVOID)_HookData.m_window) 
         {
             HWND hWnd = (HWND)wParam;
             g_HookData.m_window->SubclassWindow(hWnd);
