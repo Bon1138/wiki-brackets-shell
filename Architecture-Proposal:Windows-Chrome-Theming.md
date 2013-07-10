@@ -117,6 +117,8 @@ Here is the WindowProc code for the main window:
 
 This is just a simple switch as we did in the old days of Windows C++ programming before there was MFC.
 
+*[Glenn] We should try to keep the general structure of the code in cefclient_win.cpp and client_handler_win.cpp in order to make future cefclient updates as smooth as possible. I'm definitely in favor of cleaning up the code (yes, that switch statement is way too long!), but we shouldn't stray too far from the original structure.*
+  
 # Subclassing 
 
 MFC Maintains a single message pump for each thread that dispatches messages to the appropriate window through a CWndToObjMap which cannot be shared across threads.  Not that we need to but this has always been a source of consternation since you cannot re-wrap an CWnd object in another thread because it already has an AfxWndProc. 
@@ -272,6 +274,8 @@ And add some tracking data to the window object that needs it:
 # Menus
 Menus are new because I haven't done much with them yet.  I started experimenting with this in my Reflow Innovation project and got some results but not as dramatic as what was laid out in the XD spec.  After Peter Flynn's comment about needing a minimum size, I'm not so certain that putting the menus in the title bar is the best idea.  
 
+*[Glenn] We need to figure out if menus will work in the title bar. Let's have that discussion soon.*
+
 The first step in the process is to get everything to draw a black menu bar and menu frame.  We do this by making sure that the top level menus are owner drawn during WM_NCPAINT. We do this during paint to handle cases where the menu changes between paint cycles.
 
 In the WM_NCPAINT handler we need to iterate over all of the menu items in the menu bar and add owner drawn attributes on anything that isn't already setup for owner draw. This would be new things that are added since the last time the window was painted.
@@ -332,6 +336,8 @@ Cool menu won't help us here because it is basically just drawing stuff on the e
 
 Popup Menus are just another window object (oddly though, they don't show up in SPY++) and can be hooked to do custom drawing like we do for any other winodw.  To hook a popup menu, you need to basically hook the window create process for all windows being created on the current thread and check for the special menu window class name ("#32768").  Dialogs, BTW, have class "#32770".  These probably represent system atoms but that's another talk. Hooking all window create messages for the current process means that we can theme the system menu and system context menus.  Brackets (and Edge Code) doesn't use system context menus but  Reflow does. So this is something that the unified
 
+*[Glenn] Native pop-up menus are in the backlog, so that is definitely something we'll need to address.*
+
 So we basically re-use the window hook that we implemented for cef_window above and add another qualifier to check for menus:
 
         TCHAR szClassName[10];
@@ -351,7 +357,11 @@ http://read.pudn.com/downloads73/sourcecode/windows/11923/Tools/MenuXP.cpp__.htm
 # Testing, 1-2-3
 The good news is that I've done most of the work in various forms and in different parts of the universe so this is just bringing them all together.  This started as an innovation project for Reflow.  Since I've done this many times I thought it would be easy (and it was) so the challenge was to make the menus work.  I think after the research I've done that I can move forward pretty quickly but Chris Bank tried to demo my build for the Reflow innovation day for me, since I was out on sabbatical, and wasn't able to get it to work on Windows Vista.  This is a risk. It was originally developed on XP so every version (and new version) of Windows needs to be tested.  The acceptance criteria doesn't call for owner drawn dialog boxes.  There aren't any except the File Dialogs (which is another story) so this should be a fairly quick inspection on all platforms.  It's just a matter of having access to VMWare and testing on every platform.
 
+*[Glenn] Dialog boxes are out of scope. If XP support requires a bunch of additional work, we should consider dropping it. This is ultimately a PM decision, but engineering effort may influence it.*
+
 # Customization
 The idea is that we could turn the darkness on and off by wrapping the code into either a runtime check or compiletime flag.  Either will work -- but we haven't talked about this in detail.  Furthermore, the darkness colors will be compile time constants -- not driven by an external style sheet or config file.  This wasn't part of the acceptance criteria and I know that's what folks are asking for but that's simply too much work for this round.  I believe there is another story to allow the theme to be customizable.
+
+*[Glenn] A global flag to enable/disable is fine. This can be compile time or runtime, whichever is easier. Compile time constants for colors is fine as a first step, but we may need to make them customizable at runtime in the future.*
 
 NOTE: This work is for the window chrome only.  The Code Mirror colors are not changing and can be customized using Code Mirror theme files.  There is an extension to do this already but I haven't tried it.
