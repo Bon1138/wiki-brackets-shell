@@ -273,11 +273,14 @@ And add some tracking data to the window object that needs it:
     };
 
 # Menus
-Menus are new because I haven't done much with them yet.  I started experimenting with this in my Reflow Innovation project and got some results but not as dramatic as what was laid out in the XD spec.  After reading Peter Flynn's comment about needing a minimum, I'm a little concerned about putting the menus in the title bar.  
+Menus are new because I haven't done much with them yet.  I started experimenting with this in my Reflow Innovation project and got some results but not as dramatic as what was laid out in the XD spec.  After reading Peter Flynn's comment about needing a minimum, I'm a little concerned about putting the menus in the title bar.  _After discussions with XD, Menus in the titlebar will not be implemented_
 
-*[Glenn] We need to figure out if menus will work in the title bar. Let's have that discussion soon.*
+***
+**DISREGARD THE REMAINDER OF THIS SECTION**  
+The discussion below is for subclassing the actual popup menu to draw the menu and menu items with a black background.  _This will also not be implemented_
+***
 
-The first step in the process is to get everything to draw a black menu bar and menu frame.  We do this by making sure that the top level menus are owner drawn during WM_NCPAINT. We do this during paint to handle cases where the menu changes between paint cycles.
+The first step in the process is to get everything to draw a black menu bar and menu frame.  We do this by drawing the menubar ourselves in the WM_NCPAINT handler. 
 
 In the WM_NCPAINT handler we need to iterate over all of the menu items in the menu bar and add owner drawn attributes on anything that isn't already setup for owner draw. This would be new things that are added since the last time the window was painted.
 
