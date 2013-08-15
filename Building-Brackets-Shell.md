@@ -2,9 +2,11 @@
 
 ### Prerequisites
 
+**Linux Users** These setup steps (from developer dependencies to Git setup) are automated via a one-line `wget`. See details in the [Linux](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#linux) below.
+
 * [Node.js](http://nodejs.org/download/)
 * Additional prerequisites are listed below for [Mac](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#mac) and [Windows](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#windows)
-* Clone both [brackets-shell](https://github.com/adobe/brackets-shell) and [brackets](https://github.com/adobe/brackets) repositories as siblings in the same directory. By default, Gruntfiles in both projects make this assumption.
+* Clone both [brackets-shell](https://github.com/adobe/brackets-shell) and [brackets](https://github.com/adobe/brackets) repositories as siblings in the same directory. By default, Grunt tasks in both projects make this assumption.
 
 #### Install Dependencies
 
@@ -130,4 +132,44 @@ Make sure to run gitbash as administrator
 
 ## Linux
 
-Not available yet. Please let us know if you'd like to help with the Linux version. -- You may want to take a look at https://github.com/adobe/brackets/wiki/Linux-Version to get started.
+Currently, the core Brackets team only supports Debian/Ubuntu as a development environment and for our binary packages. We would like to support more distributions in the future, but we've already seen other open source contributors take Brackets to Arch Linux. For more information on the current development status, visit the [Linux wiki page|https://github.com/adobe/brackets/wiki/Linux-Version].
+
+#### Preview Build
+
+In Sprint 28, we release a Preview build for Linux (Debian/Ubuntu only). We're very close to parity with Mac and Windows. See the [Linux wiki page|https://github.com/adobe/brackets/wiki/Linux-Version] for more details.
+
+####Prerequisites
+
+There are 2 options for installing prerequisites: (1) a one-line `wget` to setup the Git repositories and install depenencies or (2) setup Git separately and install dependencies on your own.
+
+```
+# One-line setup (recommended)
+wget https://gist.github.com/jasonsanjose/5514813/raw/5b9e5ff17a54cbd50dd16e9b8cc1fdc0077e21ba/setup.sh; chmod +x setup.sh; bash setup.sh; rm setup.sh
+```
+
+```
+# Manual setup
+
+# install git and dev dependencies
+sudo apt-get install --assume-yes git libnss3-1d libnspr4-0d gyp gtk+-2.0
+ 
+# install node and grunt
+sudo apt-get install --assume-yes python-software-properties python g++ make
+sudo add-apt-repository ppa:chris-lea/node.js -y
+sudo apt-get update --assume-yes
+sudo apt-get install --assume-yes nodejs
+sudo npm install -g grunt-cli
+```
+
+####Setup
+Open a Terminal window at the `brackets-shell` directory and run `grunt`. This will download the CEF and Node.js binaries (if needed), create symlinks for the CEF and Node.js directories, create the Makefile, then run a command line build.
+
+You will need to run ``grunt setup`` later if new source files are added or if brackets-shell updates to a newer CEF build.
+
+####Building from the command line
+Open a Terminal window at the `brackets-shell` directory and run `grunt build` or simply `make`.
+
+####Running
+The build output is located at `out/Release/Brackets` (release build) or  `out/Debug/Brackets` (debug build).
+
+When you launch this app, you will be prompted to select `index.html` (the main file for the Brackets HTML/JS/CSS source code). Navigate to your local copy of the brackets repo and select `src/index.html`. To avoid having to do this every time you launch, go to the brackets repo and run the `tools/setup_for_hacking` script. This will add a symlink to the main file into your compiled Brackets.app. The parameter to setup_for_hacking is the full path to Brackets.app. 
