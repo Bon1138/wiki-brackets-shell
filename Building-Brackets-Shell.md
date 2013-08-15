@@ -132,11 +132,11 @@ Make sure to run gitbash as administrator
 
 ## Linux
 
-Currently, the core Brackets team only supports Debian/Ubuntu as a development environment and for our binary packages. We would like to support more distributions in the future, but we've already seen other open source contributors take Brackets to Arch Linux. For more information on the current development status, visit the [Linux wiki page|https://github.com/adobe/brackets/wiki/Linux-Version].
+Currently, the core Brackets team only supports Debian/Ubuntu as a development environment and for our binary packages. We would like to support more distributions in the future, but we've already seen other open source contributors take Brackets to Arch Linux. For more information on the current development status, visit the [Linux wiki page](https://github.com/adobe/brackets/wiki/Linux-Version).
 
 #### Preview Build
 
-In Sprint 28, we release a Preview build for Linux (Debian/Ubuntu only). We're very close to parity with Mac and Windows. See the [Linux wiki page|https://github.com/adobe/brackets/wiki/Linux-Version] for more details.
+In Sprint 28, we release a Preview build for Linux (Debian/Ubuntu only). We're very close to parity with Mac and Windows. See the [Linux wiki page](https://github.com/adobe/brackets/wiki/Linux-Version) for more details.
 
 ####Prerequisites
 
