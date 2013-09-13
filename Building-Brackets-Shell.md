@@ -23,7 +23,7 @@ Running ``grunt --help`` lists all the available tasks. Those tasks are listed b
           full-build  Alias for "git", "create-project", "build",              
                       "build-branch", "build-num", "build-sha", "stage",       
                       "package" tasks.                                         
-           installer  Alias for "full-build", "build-installer" tasks.         
+           installer  Alias for "full-build", "build-installer" tasks. (requires additional setup steps)
                build  Build shell executable. Run 'grunt full-build' to update 
                       repositories, build the shell and package www files.     
            build-mac  Build mac shell                                          
@@ -40,8 +40,8 @@ Running ``grunt --help`` lists all the available tasks. Those tasks are listed b
              package  Package www files                                        
         write-config  Update version data in www config.json payload           
      build-installer  Build installer                                          
- build-installer-mac  Build mac installer                                      
- build-installer-win  Build windows installer                                  
+ build-installer-mac  Build mac installer (requires additional setup steps)
+ build-installer-win  Build windows installer (requires additional setup steps)
           set-sprint  Update occurrences of sprint number for all native       
                       installers and binaries                                  
                  cef  Download and setup CEF                                   
@@ -63,6 +63,8 @@ Running ``grunt --help`` lists all the available tasks. Those tasks are listed b
                       grunt. *                                                 
              default  Alias for "setup", "build" tasks.
 ```
+
+**Note** building the installer - as opposed to just the locally-executable binary - requires _additional setup_ not covered here. See [[Brackets Installer]] for details.
 
 ## Mac
 ####Prerequisites
