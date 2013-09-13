@@ -64,7 +64,7 @@ Running ``grunt --help`` lists all the available tasks. Those tasks are listed b
              default  Alias for "setup", "build" tasks.
 ```
 
-**Note** building the installer - as opposed to just the locally-executable binary - requires _additional setup_ not covered here. See [[Brackets Installer]] for details.
+**Building the installer** - as opposed to just the locally-executable binary - requires _additional setup_ not covered here. See [[Brackets Installer]] for details.
 
 ## Mac
 ####Prerequisites
