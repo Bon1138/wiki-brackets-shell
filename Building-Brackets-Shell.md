@@ -13,8 +13,8 @@
 From the `brackets-shell` directory, run the following set of commands to install package dependencies and [Grunt](http://gruntjs.com)
 
 ```
-npm install
 npm install -g grunt-cli
+npm install
 ```
 
 Running ``grunt --help`` lists all the available tasks. Those tasks are listed below:
