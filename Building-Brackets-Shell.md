@@ -15,6 +15,7 @@ From the `brackets-shell` directory, run the following set of commands to instal
 ```
 npm install -g grunt-cli
 npm install
+grunt setup
 ```
 
 Running ``grunt --help`` lists all the available tasks. Those tasks are listed below:
