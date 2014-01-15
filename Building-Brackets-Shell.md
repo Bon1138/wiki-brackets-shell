@@ -147,7 +147,7 @@ There are 2 options for installing prerequisites: (1) a one-line `wget` to setup
 
 ```
 # One-line setup (recommended)
-wget https://gist.github.com/jasonsanjose/5514813/raw/5b9e5ff17a54cbd50dd16e9b8cc1fdc0077e21ba/setup.sh; chmod +x setup.sh; bash setup.sh; rm setup.sh
+wget https://gist.github.com/jasonsanjose/5514813/raw/6215f3b73ff41f51e20bc94a9faa3e453402ce06/setup.sh; chmod +x setup.sh; bash setup.sh; rm setup.sh
 ```
 
 ```
