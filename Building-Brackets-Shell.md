@@ -94,7 +94,7 @@ When you launch this app, you will be prompted to select `index.html` (the main 
 
 ####Prerequisites
 
-* Visual Studio 2010 or 2012 required to build the project. The free Visual Studio Express works fine.
+* Visual Studio 2010 (preferred) or 2012 are required to build the project. The free Visual Studio Express works fine.
 * Windows Vista or later (although brackets-shell _runs_ on Windows XP, you cannot _build_ it on XP)
 * [GitBash](http://code.google.com/p/msysgit/downloads/list) (I used Git-1.8.0-preview20121022.exe)
 * [Python 2.7](http://www.python.org/getit/releases/2.7.3/) (Use the Windows X86 MSI or Windows X86-64 MSI)
