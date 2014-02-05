@@ -102,7 +102,7 @@ When you launch this app, you will be prompted to select `index.html` (the main 
 Add Python to your path. The default python 2.7 install directory is `C:\Python27`.
 
 ####Verify Prerequisites
-* Start GitBash
+* Start GitBash wit **Run as Administrator**
 * Enter `python --version`. You should see "Python 2.7.3".
 * Enter `echo $VS100COMNTOOLS`. You should see something like ""C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\Tools\"
 
@@ -131,7 +131,7 @@ If grunt fails you may need to reset
 > git reset #HEAD  
 > git checkout .
 
-Make sure to run gitbash as administrator
+Make sure to run gitbash as administrator. Otherwise the symlinks/junctions for CEF directories will be missing after `grunt setup`.
 
 ## Linux
 
