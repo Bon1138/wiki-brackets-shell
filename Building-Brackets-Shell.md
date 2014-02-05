@@ -73,7 +73,7 @@ Running ``grunt --help`` lists all the available tasks. Those tasks are listed b
 * [Git command line tools](http://git-scm.com/downloads)
 * Python (should be installed by default--enter `python --version` in a Terminal window to verify)
 * Xcode 4 required to build the project
-  * In newer versions of Xcode, you might also need to install the "Command Line Tools" in Xcode from Preferences > Downloads.
+  * In newer versions of Xcode, you might also need to install the "Command Line Tools" in Xcode from Preferences > Downloads and then select Xcode in the "Command Line Tools" drop-down in Preferences > Locations.
 
 ####Setup
 Open a Terminal window at the `brackets-shell` directory and run `grunt`. This will download the CEF and Node.js binaries (if needed), create symlinks for the CEF and Node.js directories, create the XCode project, then run a command line build.
