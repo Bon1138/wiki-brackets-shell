@@ -1,14 +1,12 @@
-## All Platforms
+### Before you begin
 
-### Platform Specific Prerequisites
+**Linux Users Only** These setup steps (from developer dependencies to Git setup) are automated via a one-line `wget`. See details in the [Linux](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#linux) section below.
 
-**Note: Linux Users Only** These setup steps (from developer dependencies to Git setup) are automated via a one-line `wget`. See details in the [Linux](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#linux) section below.
+**Windows XP Users Only** The grunt scripts used by Brackets do not work with paths that have spaces.  When building on Windows XP, it is important to clone to a folder that doesn't have spaces. The default used by GitHub, the GitHub Shell, etc... is `C:\Documents and Settings\<username>\My Documents\GitHub` Using this folder will cause some commands to fail during the grunt setup process.  
 
-**Note: Windows XP Users Only** The grunt scripts used by Brackets do not work with paths that have spaces.  When building on Windows XP, it is important to clone to a folder that doesn't have spaces. The default for GitHub is `C:\Documents and Settings\<username>\My Documents\GitHub` This will cause some commands to fail during the grunt setup process.  An issue has been filed for this (https://github.com/adobe/brackets/issues/7181).  
+An issue has been filed for this (https://github.com/adobe/brackets/issues/7181).  
 
 In the interim, to build on Windows XP, Create a folder to clone to in the root directory `C:\GitHub\` so that there are no spaces for the build to choke on.  
-
-**Windows XP Users must** download the `Junction` tool from Microsoft (http://technet.microsoft.com/en-us/sysinternals/bb896768.aspx); Once the download has completed, open the zip file and copy `junction.exe` to `c:\windows\system32` then run it once by double clicking it in `Windows Explorer` or typing `junction` from a command prompt.  This is just to get the license acceptance dialog out of the way before building brackets.
 
 ### General Prerequisites
 
@@ -106,6 +104,7 @@ When you launch this app, you will be prompted to select `index.html` (the main 
 ## Windows
 
 ####Prerequisites
+**Windows XP Users must** download the `Junction` tool from Microsoft (http://technet.microsoft.com/en-us/sysinternals/bb896768.aspx); Once the download has completed, open the zip file and copy `junction.exe` to `c:\windows\system32` then run it once by double clicking it in `Windows Explorer` or typing `junction` from a command prompt.  This is just to get the license acceptance dialog out of the way before building brackets.
 
 * Visual Studio 2010 (preferred) or 2012 are required to build the project. The free Visual Studio Express works fine.
     * Note that if you're using VS 2010 or VS Express, you might need to install [Visual Studio 2010 SP1](http://www.microsoft.com/en-us/download/details.aspx?id=23691) to avoid link errors.
