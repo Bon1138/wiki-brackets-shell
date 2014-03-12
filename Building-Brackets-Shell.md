@@ -4,6 +4,12 @@
 
 **Note: Linux Users Only** These setup steps (from developer dependencies to Git setup) are automated via a one-line `wget`. See details in the [Linux](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#linux) section below.
 
+**Note: Windows XP Users Only** The grunt scripts used by Brackets do not work with paths that have spaces.  When building on Windows XP, it is important to clone to a folder that doesn't have spaces. The default for GitHub is `C:\Documents and Settings\<username>\My Documents\GitHub` This will cause some commands to fail during the grunt setup process.  An issue has been filed for this (https://github.com/adobe/brackets/issues/7181).  
+
+In the interim, to build on Windows XP, Create a folder to clone to in the root directory `C:\GitHub\` so that there are no spaces for the build to choke on.  
+
+Windows XP Users must also download the Junction tool from Microsoft (http://technet.microsoft.com/en-us/sysinternals/bb896768.aspx); Once downloaded open the zip file copy junction.exe to yoiur `c:\windows\system32` then run it once by double clicking it or typing `junction` from a command prompt.  This is just to get the license acceptance dialog out of the way on first run.
+
 * [Node.js](http://nodejs.org/download/)
 * Additional prerequisites are listed below for [Mac](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#mac) and [Windows](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#windows)
 * Clone both [brackets-shell](https://github.com/adobe/brackets-shell) and [brackets](https://github.com/adobe/brackets) repositories as siblings in the same directory. By default, Grunt tasks in both projects make this assumption.
