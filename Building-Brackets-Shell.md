@@ -1,6 +1,6 @@
 ## All Platforms
 
-### Prerequisites
+### Platform Specific Prerequisites
 
 **Note: Linux Users Only** These setup steps (from developer dependencies to Git setup) are automated via a one-line `wget`. See details in the [Linux](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#linux) section below.
 
@@ -8,10 +8,12 @@
 
 In the interim, to build on Windows XP, Create a folder to clone to in the root directory `C:\GitHub\` so that there are no spaces for the build to choke on.  
 
-**Windows XP Users must** download the `Junction` tool from Microsoft (http://technet.microsoft.com/en-us/sysinternals/bb896768.aspx); Once downloaded open the zip file copy junction.exe to your `c:\windows\system32` then run it once by double clicking it or typing `junction` from a command prompt.  This is just to get the license acceptance dialog out of the way on first run.
+**Windows XP Users must** download the `Junction` tool from Microsoft (http://technet.microsoft.com/en-us/sysinternals/bb896768.aspx); Once the download has completed, open the zip file and copy `junction.exe` to `c:\windows\system32` then run it once by double clicking it in `Windows Explorer` or typing `junction` from a command prompt.  This is just to get the license acceptance dialog out of the way before building brackets.
+
+### General Prerequisites
 
 * [Node.js](http://nodejs.org/download/)
-* Additional prerequisites are listed below for [Mac](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#mac) and [Windows](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#windows)
+* Additional requirements are listed below for [Mac](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#mac) and [Windows](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#windows)
 * Clone both [brackets-shell](https://github.com/adobe/brackets-shell) and [brackets](https://github.com/adobe/brackets) repositories as siblings in the same directory. By default, Grunt tasks in both projects make this assumption.
 
 #### Install Dependencies
