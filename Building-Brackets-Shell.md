@@ -8,7 +8,7 @@
 
 In the interim, to build on Windows XP, Create a folder to clone to in the root directory `C:\GitHub\` so that there are no spaces for the build to choke on.  
 
-Windows XP Users must also download the Junction tool from Microsoft (http://technet.microsoft.com/en-us/sysinternals/bb896768.aspx); Once downloaded open the zip file copy junction.exe to yoiur `c:\windows\system32` then run it once by double clicking it or typing `junction` from a command prompt.  This is just to get the license acceptance dialog out of the way on first run.
+**Windows XP Users must** download the `Junction` tool from Microsoft (http://technet.microsoft.com/en-us/sysinternals/bb896768.aspx); Once downloaded open the zip file copy junction.exe to your `c:\windows\system32` then run it once by double clicking it or typing `junction` from a command prompt.  This is just to get the license acceptance dialog out of the way on first run.
 
 * [Node.js](http://nodejs.org/download/)
 * Additional prerequisites are listed below for [Mac](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#mac) and [Windows](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#windows)
