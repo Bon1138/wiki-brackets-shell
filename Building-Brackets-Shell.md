@@ -1,6 +1,6 @@
 ### Before you begin
 
-**Linux Users Only** These setup steps (from developer dependencies to Git setup) are automated via a one-line `wget`. See details in the [Linux](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#linux) section below.
+**Linux Users Only** These setup steps (from developer dependencies to Git setup) are automated via a one-line `wget`. See details in the [Linux](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#wiki-linux) section below.
 
 **Windows XP Users Only** The grunt scripts used by Brackets do not work with paths that have spaces.  When building on Windows XP, it is important to clone to a folder that doesn't have spaces. The default used by GitHub, the GitHub Shell, etc... is `C:\Documents and Settings\<username>\My Documents\GitHub` Using this folder will cause some commands to fail during the grunt setup process.  
 
@@ -11,7 +11,7 @@ In the interim, to build on Windows XP, Create a folder to clone to in the root 
 ### General Prerequisites
 
 * [Node.js](http://nodejs.org/download/)
-* Additional requirements are listed below for [Mac](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#mac) and [Windows](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#windows)
+* Additional requirements are listed below for [Mac](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#wiki-mac) and [Windows](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#wiki-windows)
 * Clone both [brackets-shell](https://github.com/adobe/brackets-shell) and [brackets](https://github.com/adobe/brackets) repositories as siblings in the same directory. By default, Grunt tasks in both projects make this assumption.
 
 #### Install Dependencies
@@ -74,7 +74,7 @@ Running ``grunt --help`` lists all the available tasks. Those tasks are listed b
 **Building the installer** - as opposed to just the locally-executable binary - requires _additional setup_ not covered here. See [[Brackets Installer]] for details.
 
 
-##Mac
+## Mac
 
 ####Prerequisites
 
@@ -101,7 +101,7 @@ The build output is located at `xcodebuild/Release/Brackets.app` (release build)
 When you launch this app, you will be prompted to select `index.html` (the main file for the Brackets HTML/JS/CSS source code). Navigate to your local copy of the brackets repo and select `src/index.html`. To avoid having to do this every time you launch, go to the brackets repo and run the `tools/setup_for_hacking.sh` script. This will add a symlink pointing from the compiled Brackets.app to the index.html file. The parameter to setup_for_hacking is the full path to Brackets.app. 
 
 
-##Windows
+## Windows
 
 ####Prerequisites
 **Windows XP Users must** download the `Junction` tool from Microsoft (http://technet.microsoft.com/en-us/sysinternals/bb896768.aspx); Once the download has completed, open the zip file and copy `junction.exe` to `c:\windows\system32` then run it once by double clicking it in `Windows Explorer` or typing `junction` from a command prompt.  This is just to get the license acceptance dialog out of the way before building brackets.
@@ -145,7 +145,7 @@ If grunt fails you may need to reset
 Make sure to run gitbash as administrator. Otherwise the symlinks/junctions for CEF directories will be missing after `grunt setup`.
 
 
-##Linux
+## Linux
 
 Currently, the core Brackets team only supports Debian/Ubuntu as a development environment and for our binary packages. We would like to support more distributions in the future, but we've already seen other open source contributors take Brackets to Arch Linux. For more information on the current development status, visit the [Linux wiki page](https://github.com/adobe/brackets/wiki/Linux-Version).
 
