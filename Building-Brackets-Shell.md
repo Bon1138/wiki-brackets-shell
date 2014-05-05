@@ -2,11 +2,7 @@
 
 **Linux Users Only** These setup steps (from developer dependencies to Git setup) are automated via a one-line `wget`. See details in the [Linux](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#wiki-linux) section below.
 
-**Windows XP Users Only** The grunt scripts used by Brackets do not work with paths that have spaces.  When building on Windows XP, it is important to clone to a folder that doesn't have spaces. The default used by GitHub, the GitHub Shell, etc... is `C:\Documents and Settings\<username>\My Documents\GitHub` Using this folder will cause some commands to fail during the grunt setup process.  
-
-An issue has been filed for this (https://github.com/adobe/brackets/issues/7181).  
-
-In the interim, to build on Windows XP, Create a folder to clone to in the root directory `C:\GitHub\` so that there are no spaces for the build to choke on.  
+**Clone Path Warning** The grunt scripts used by Brackets do not work with paths that have spaces.  Cloning into a folder will cause some commands to fail during the grunt setup process.  An issue has been filed for this (https://github.com/adobe/brackets/issues/7181).  In the interim, clone to a folder that doesn't have spaces so that the grunt setup process succeeds. 
 
 ### General Prerequisites
 
