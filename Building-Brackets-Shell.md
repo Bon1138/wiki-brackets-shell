@@ -2,7 +2,7 @@
 
 **Linux Users Only** These setup steps (from developer dependencies to Git setup) are automated via a one-line `wget`. See details in the [Linux](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#wiki-linux) section below.
 
-**Clone Path Warning** The grunt scripts used by Brackets do not work with paths that have spaces.  Cloning into a folder with parent names containing spaces (e.g. "/users/user/document/test folder/github/brackets-shell" or "c:\users\user\documents\test folder\github\bracket-shell") may cause some commands to fail during the grunt setup process.  An issue has been filed for this (https://github.com/adobe/brackets/issues/7181).  
+**Clone Path Warning** The grunt scripts used by Brackets do not work with paths that have spaces.  Cloning into a path containing spaces (e.g. "/users/user/document/test folder/github/brackets-shell" or "c:\users\user\documents\test folder\github\bracket-shell") may cause some commands to fail during the grunt setup process.  An issue has been filed for this (https://github.com/adobe/brackets/issues/7181).  
 
 In the interim, clone to a path that doesn't have spaces. 
 
