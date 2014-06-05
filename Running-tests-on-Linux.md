@@ -1,3 +1,5 @@
+Courtesy of @ingorichter 
+
 - clone the Brackets repository  
 - checkout the release branch  
 - run _npm install & grunt setup`  
