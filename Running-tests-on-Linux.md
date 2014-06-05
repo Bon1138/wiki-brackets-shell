@@ -4,11 +4,11 @@ Courtesy of @ingorichter
 - checkout the release branch  
 - run `npm install & grunt setup`  
 - run `grunt test-integration --suite=unit --shell=/opt/brackets/brackets`  
-- rename result.xml to result-unit.xml  
+- rename results.xml to results-unit.xml  
 - run `grunt test-integration --suite=extension --shell=/opt/brackets/brackets`  
-- rename result.xml to result-extension.xml  
+- rename results.xml to results-extension.xml  
 - run `grunt test-integration --suite=integration --shell=/opt/brackets/brackets`  
-- rename result.xml to result-integration.xml  
+- rename results.xml to results-integration.xml  
 
 ### Install Apache & PHP for server smokes  
 
