@@ -12,7 +12,7 @@
 
 - https://help.ubuntu.com/community/ApacheMySQLPHP  
 - https://help.ubuntu.com/community/ApacheMySQLPHP#Installing_PHP_5  
-create info.php file in /var/www/html with this content
+- Create info.php file in /var/www/html with this content
 ```php
 <?php
 phpinfo();
