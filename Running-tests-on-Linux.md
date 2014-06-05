@@ -7,7 +7,7 @@
 - rename result.xml to result-extension.xml  
 - run `grunt test-integration --suite=integration --shell=/opt/brackets/brackets`  
 - rename result.xml to result-integration.xml  
-# Install Apache & PHP for server smokes  
+### Install Apache & PHP for server smokes  
 - https://help.ubuntu.com/community/ApacheMySQLPHP  
 - https://help.ubuntu.com/community/ApacheMySQLPHP#Installing_PHP_5  
 create info.php file in /var/www/html with this content
