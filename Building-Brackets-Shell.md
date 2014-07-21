@@ -104,11 +104,11 @@ When you launch this app, you will be prompted to select `index.html` (the main 
 ####Prerequisites
 **Windows XP Users must** download the `Junction` tool from Microsoft (http://technet.microsoft.com/en-us/sysinternals/bb896768.aspx); Once the download has completed, open the zip file and copy `junction.exe` to `c:\windows\system32` then run it once by double clicking it in `Windows Explorer` or typing `junction` from a command prompt.  This is just to get the license acceptance dialog out of the way before building brackets.
 
-* Visual Studio 2010 (preferred) or 2012 are required to build the project. The free Visual Studio Express works fine.
+* Visual Studio 2010 (preferred) or 2012 are required to build the project. The free Visual Studio C++ Express works fine.
     * Note that if you're using VS 2010 or VS Express, you might need to install [Visual Studio 2010 SP1](http://www.microsoft.com/en-us/download/details.aspx?id=23691) to avoid link errors.
 * Windows Vista or later (although brackets-shell _runs_ on Windows XP, you cannot _build_ it on XP)
 * [GitBash](http://code.google.com/p/msysgit/downloads/list) (I used Git-1.8.0-preview20121022.exe)
-* [Python 2.7](http://www.python.org/getit/releases/2.7.3/) (Use the Windows X86 MSI or Windows X86-64 MSI)
+* [Python 2.7](https://www.python.org/downloads/) (Use the Windows X86 MSI or Windows X86-64 MSI)
 
 Add Python to your path. The default python 2.7 install directory is `C:\Python27`.
 
