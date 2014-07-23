@@ -2,15 +2,13 @@
 
 **Linux Users Only** These setup steps (from developer dependencies to Git setup) are automated via a one-line `wget`. See details in the [Linux](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#wiki-linux) section below.
 
-**Clone Path Warning** The grunt scripts used by Brackets do not work with paths that have spaces.  Cloning into a path containing spaces (e.g. "/users/user/document/test folder/github/brackets-shell" or "c:\users\user\documents\test folder\github\bracket-shell") may cause some commands to fail during the grunt setup process.  An issue has been filed for this (https://github.com/adobe/brackets/issues/7181).  
-
-In the interim, clone to a path that doesn't have spaces. 
+**Clone Path Warning** The grunt scripts used by Brackets [do not work with paths that have spaces](https://github.com/adobe/brackets/issues/7181).  To avoid build problems, don't clone the source into a path containing spaces (e.g. "/users/user/document/test folder/github/brackets-shell" or "c:\users\user\documents\test folder\github\bracket-shell").
 
 ### General Prerequisites
 
 * [Node.js](http://nodejs.org/download/)
-* Additional requirements are listed below for [Mac](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#wiki-mac) and [Windows](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#wiki-windows)
-* Clone both [brackets-shell](https://github.com/adobe/brackets-shell) and [brackets](https://github.com/adobe/brackets) repositories as siblings in the same directory. By default, Grunt tasks in both projects make this assumption.
+* Additional requirements listed below for [Mac](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#wiki-mac) and [Windows](https://github.com/adobe/brackets-shell/wiki/Building-Brackets-Shell#wiki-windows)
+* Clone both [brackets-shell](https://github.com/adobe/brackets-shell) and [brackets](https://github.com/adobe/brackets) repositories as siblings in the same directory. (Grunt tasks in both projects assume the folders are siblings).
 
 #### Install Dependencies
 
@@ -91,7 +89,7 @@ You will need to run ``grunt setup`` later if new source files are added or if b
 Open appshell.xcodeproj in XCode and build the "Brackets" target.
 
 ####Building from the command line
-Open a Terminal window at the `brackets-shell` directory and run `grunt build`.
+Open a Terminal window at the `brackets-shell` directory and run `grunt build`. (You will still need XCode installed, however).
 
 ####Running
 The build output is located at `xcodebuild/Release/Brackets.app` (release build) or  `xcodebuild/Debug/Brackets.app` (debug build).
@@ -102,11 +100,9 @@ When you launch this app, you will be prompted to select `index.html` (the main 
 ## Windows
 
 ####Prerequisites
-**Windows XP Users must** download the `Junction` tool from Microsoft (http://technet.microsoft.com/en-us/sysinternals/bb896768.aspx); Once the download has completed, open the zip file and copy `junction.exe` to `c:\windows\system32` then run it once by double clicking it in `Windows Explorer` or typing `junction` from a command prompt.  This is just to get the license acceptance dialog out of the way before building brackets.
-
 * Visual Studio 2010 (preferred) or 2012 are required to build the project. The free Visual Studio C++ Express works fine.
     * Note that if you're using VS 2010 or VS Express, you might need to install [Visual Studio 2010 SP1](http://www.microsoft.com/en-us/download/details.aspx?id=23691) to avoid link errors.
-* Windows Vista or later (although brackets-shell _runs_ on Windows XP, you cannot _build_ it on XP)
+* Windows Vista or later
 * [GitBash](http://code.google.com/p/msysgit/downloads/list) (I used Git-1.8.0-preview20121022.exe)
 * [Python 2.7](https://www.python.org/downloads/) (Use the Windows X86 MSI or Windows X86-64 MSI)
 
@@ -122,12 +118,12 @@ Open a GitBash shell and navigate to the `brackets-shell` directory. Run `grunt`
 
 You will need to _re-run_ ``grunt setup`` later if new source files are added or if brackets-shell updates to a newer CEF build.
 
-####Building in Visual Studio.
+####Building in Visual Studio
 Open appshell.sln in Visual Studio. NOTE: If you are using Visual Studio Express, you may get warnings that say some of the projects couldn't be loaded. These can be ignored.
 Build the "Brackets" target.
 
 ####Building from the command line
-Open a GitBash window at the `brackets-shell` directory and run `grunt build`.
+Open a GitBash window at the `brackets-shell` directory and run `grunt build`. (You will still need Visual Studio installed, however).
 
 ####Running
 The build output is located at `Release\Brackets.exe` (release build) or `Debug\Brackets.exe` (debug build).
