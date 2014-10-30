@@ -2,7 +2,7 @@ Courtesy of @ingorichter
 
 - clone the Brackets repository  
 - checkout the release branch  
-- run `npm install & grunt setup`  
+- run `npm install & grunt install`  
 - run `grunt test-integration --suite=unit --shell=/opt/brackets/brackets`  
 - rename results.xml to results-unit.xml  
 - run `grunt test-integration --suite=extension --shell=/opt/brackets/brackets`  
