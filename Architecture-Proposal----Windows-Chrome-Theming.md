@@ -197,7 +197,7 @@ This is pretty simple to do.  I implemented this in Dreamweaver CS5 for MDI docu
 
 We need to handle all of the NC mouse messages so we know when the user is interacting with a button. This means drawing the buttons in their various states and overriding the default Windows implementation.
 
-We'll need to setup the window to receive a `WM_NCMOUSELEAVE` message from the on WM_NCMOUSEDOWN` handler when we get a hit test on one of the system buttons.  
+We'll need to setup the window to receive a `WM_NCMOUSELEAVE` message from the on `WM_NCMOUSEDOWN` handler when we get a hit test on one of the system buttons.  
 
     void cef_main_window::TrackMouseEvents(bool track/*=true*/) 
     {
@@ -280,9 +280,9 @@ Menus are new because I haven't done much with them yet.  I started experimentin
 The discussion below is for subclassing the actual popup menu to draw the menu and menu items with a black background.  _This will also not be implemented_
 ***
 
-The first step in the process is to get everything to draw a black menu bar and menu frame.  We do this by drawing the menubar ourselves in the WM_NCPAINT handler. 
+The first step in the process is to get everything to draw a black menu bar and menu frame.  We do this by drawing the menubar ourselves in the `WM_NCPAINT` handler. 
 
-In the WM_NCPAINT handler we need to iterate over all of the menu items in the menu bar and add owner drawn attributes on anything that isn't already setup for owner draw. This would be new things that are added since the last time the window was painted.
+In the `WM_NCPAINT` handler we need to iterate over all of the menu items in the menu bar and add owner drawn attributes on anything that isn't already setup for owner draw. This would be new things that are added since the last time the window was painted.
 
     void cef_main_window::MakeMenuBarOwnerDrawn() 
     {
@@ -332,7 +332,7 @@ Then each menu item of each menu is made owner drawn:
         }
     }
 
-After that then you just need to handle the WM_MEASUREITEM and WM_DRAWITEM messages.
+After that then you just need to handle the `WM_MEASUREITEM` and `WM_DRAWITEM` messages.
 
 This is as far as I got with my prototype. 
 
@@ -368,7 +368,7 @@ The good news is that I've done most of the work in various forms and in differe
 *[Glenn] Dialog boxes are out of scope. If XP support requires a bunch of additional work, we should consider dropping it. This is ultimately a PM decision, but engineering effort may influence it.*
 
 # Customization
-The idea is that we could turn the darkness on and off by wrapping the code into either a runtime check or compiletime flag.  Either will work -- but we haven't talked about this in detail.  Furthermore, the darkness colors will be compile time constants -- not driven by an external style sheet or config file.  This wasn't part of the acceptance criteria and I know that's what folks are asking for but that's simply too much work for this round.  I believe there is another story to allow the theme to be customizable.
+The idea is that we could turn the darkness on and off by wrapping the code into either a runtime check or compile time flag.  Either will work -- but we haven't talked about this in detail.  Furthermore, the darkness colors will be compile time constants -- not driven by an external style sheet or config file.  This wasn't part of the acceptance criteria and I know that's what folks are asking for but that's simply too much work for this round.  I believe there is another story to allow the theme to be customizable.
 
 *[Glenn] A global flag to enable/disable is fine. This can be compile time or runtime, whichever is easier. Compile time constants for colors is fine as a first step, but we may need to make them customizable at runtime in the future.*
 
