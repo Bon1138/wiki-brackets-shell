@@ -72,7 +72,7 @@ Running ``grunt --help`` lists all the available tasks. Those tasks are listed b
 
 ## Mac
 
-####Prerequisites
+#### Prerequisites
 
 * [Git command line tools](http://git-scm.com/downloads)
 * Python (should be installed by default--enter `python --version` in a Terminal window to verify)
@@ -80,18 +80,18 @@ Running ``grunt --help`` lists all the available tasks. Those tasks are listed b
   * In newer versions of Xcode, you might also need to install the "Command Line Tools" in Xcode from Preferences > Downloads and then select Xcode in the "Command Line Tools" drop-down in Preferences > Locations.
   * Running `xcode-select --install` in a Terminal window will install the required "Command Line Tools" without starting XCode
 
-####Setup
+#### Setup
 Open a Terminal window at the `brackets-shell` directory and run `grunt`. This will download the CEF and Node.js binaries (if needed), create symlinks for the CEF and Node.js directories, create the XCode project, then run a command line build.
 
 You will need to run ``grunt setup`` later if new source files are added or if brackets-shell updates to a newer CEF build.
 
-####Building in XCode
+#### Building in XCode
 Open appshell.xcodeproj in XCode and build the "Brackets" target.
 
-####Building from the command line
+#### Building from the command line
 Open a Terminal window at the `brackets-shell` directory and run `grunt build`. (You will still need XCode installed, however).
 
-####Running
+#### Running
 The build output is located at `xcodebuild/Release/Brackets.app` (release build) or  `xcodebuild/Debug/Brackets.app` (debug build).
 
 When you launch this app, you will be prompted to select `index.html` (the main file for the Brackets HTML/JS/CSS source code). Navigate to your local copy of the brackets repo and select `src/index.html`. To avoid having to do this every time you launch, go to the brackets repo and run the `tools/setup_for_hacking.sh` script. This will add a symlink pointing from the compiled Brackets.app to the index.html file. The parameter to setup_for_hacking is the full path to Brackets.app. 
@@ -99,7 +99,7 @@ When you launch this app, you will be prompted to select `index.html` (the main 
 
 ## Windows
 
-####Prerequisites
+#### Prerequisites
 * Visual Studio 2010 (preferred) or 2012 are required to build the project. The free Visual Studio C++ Express works fine.
     * Note that if you're using VS 2010 or VS Express, you might need to install [Visual Studio 2010 SP1](http://www.microsoft.com/en-us/download/details.aspx?id=23691) to avoid link errors.
 * Windows Vista or later
@@ -108,29 +108,29 @@ When you launch this app, you will be prompted to select `index.html` (the main 
 
 Add Python to your path. The default python 2.7 install directory is `C:\Python27`.
 
-####Verify Prerequisites
+#### Verify Prerequisites
 * Start GitBash with **Run as Administrator**
 * Enter `python --version`. You should see "Python 2.7.3".
 * Enter `echo $VS100COMNTOOLS`. You should see something like ""C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\Tools\"
 
-####Setup
+#### Setup
 Open a GitBash shell and navigate to the `brackets-shell` directory. Run `grunt`. This will download the CEF binary (if needed), create symlinks for the CEF directories, create the Visual Studio solution file, then run a command line build.
 
 You will need to _re-run_ ``grunt setup`` later if new source files are added or if brackets-shell updates to a newer CEF build.
 
-####Building in Visual Studio
+#### Building in Visual Studio
 Open appshell.sln in Visual Studio. NOTE: If you are using Visual Studio Express, you may get warnings that say some of the projects couldn't be loaded. These can be ignored.
 Build the "Brackets" target.
 
-####Building from the command line
+#### Building from the command line
 Open a GitBash window at the `brackets-shell` directory and run `grunt build`. (You will still need Visual Studio installed, however).
 
-####Running
+#### Running
 The build output is located at `Release\Brackets.exe` (release build) or `Debug\Brackets.exe` (debug build).
 
 When you launch this executable, you will be prompted to select an `index.html` file (the main file for the Brackets HTML/JS/CSS source code). Navigate to your local copy of the brackets repo and select `src\index.html`. To avoid having to do this every time you launch, go to the brackets repo and run `tools\setup_for_hacking.bat`. This will add a symlink pointing from the output folder to the index.html file. The parameter to setup_for_hacking is the full path to the folder containing Brackets.exe.
 
-####Troubleshooting
+#### Troubleshooting
 If grunt fails you may need to reset  
 
 > git reset #HEAD  
@@ -147,7 +147,7 @@ Currently, the core Brackets team only supports Debian/Ubuntu as a development e
 
 In Sprint 28, we release a Preview build for Linux (Debian/Ubuntu only). We're very close to parity with Mac and Windows. See the [Linux wiki page](https://github.com/adobe/brackets/wiki/Linux-Version) for more details.
 
-####Prerequisites
+#### Prerequisites
 
 There are 2 options for installing prerequisites: (1) a one-line `wget` to setup the Git repositories and install depenencies or (2) setup Git separately and install dependencies on your own.
 
@@ -170,15 +170,15 @@ sudo apt-get install --assume-yes nodejs
 sudo npm install -g grunt-cli
 ```
 
-####Setup
+#### Setup
 Open a Terminal window at the `brackets-shell` directory and run `grunt`. This will download the CEF and Node.js binaries (if needed), create symlinks for the CEF and Node.js directories, create the Makefile, then run a command line build.
 
 You will need to run ``grunt setup`` later if new source files are added or if brackets-shell updates to a newer CEF build.
 
-####Building from the command line
+#### Building from the command line
 Open a Terminal window at the `brackets-shell` directory and run `grunt build` or simply `make`.
 
-####Running
+#### Running
 The build output is located at `out/Release/Brackets` (release build) or  `out/Debug/Brackets` (debug build).
 
 When you launch this app, you will be prompted to select `index.html` (the main file for the Brackets HTML/JS/CSS source code). Navigate to your local copy of the brackets repo and select `src/index.html`. To avoid having to do this every time you launch, go to the brackets repo and run the `tools/setup_for_hacking.sh` script. This will add a symlink pointing from the compiled app to the index.html file. The parameter to setup_for_hacking is the full path to the compiled app.
