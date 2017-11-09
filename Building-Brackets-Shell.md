@@ -175,6 +175,9 @@ Open a Terminal window at the `brackets-shell` directory and run `grunt`. This w
 
 You will need to run ``grunt setup`` later if new source files are added or if brackets-shell updates to a newer CEF build.
 
+#### Enabling symbols for debugging
+If you would like to debug the shell, debug symbols need to be generated. In order to do that, open `appshell.gyp` in Brackets and goto https://github.com/adobe/brackets-shell/blob/master/appshell.gyp#L367. At the end add `-g,` to enable debug symbols. You could use `gdb` to debug the shell.
+
 #### Building from the command line
 Open a Terminal window at the `brackets-shell` directory and run `grunt build` or simply `make`.
 
